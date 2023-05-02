@@ -1,0 +1,33 @@
+<div class="upi d-flex flex-column">
+  <div class="upi-header d-flex">
+    <div class="actions d-flex">
+      <button (click)="getUpiData('realtime')" [ngClass]="{'active': selectedAction === 'realtime'}" type="button" class="btn btn-secondary">Realtime</button>
+      <button (click)="getUpiData('reconcillation')" [ngClass]="{'active': selectedAction === 'reconcillation'}" type="button" class="btn btn-secondary">Reconcillation</button>
+      <select>
+        <option value="efd">EFD</option>
+      </select>
+    </div>
+    <div class="stats">
+      <div class="stats-box active">
+        <div class="stat-count">49</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stats-box">
+        <div class="stat-count">40</div>
+        <div class="stat-label">Success</div>
+      </div>
+      <div class="stats-box">
+        <div class="stat-count">2</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stats-box">
+        <div class="stat-count">7</div>
+        <div class="stat-label">Delayed</div>
+      </div>
+    </div>
+  </div>
+  <div class="upi-content">
+      <app-upi-realtime *ngIf="selectedAction === 'realtime'"></app-upi-realtime>
+      <app-upi-reconciliation *ngIf="selectedAction === 'reconcillation'"></app-upi-reconciliation>
+  </div>
+</div>
