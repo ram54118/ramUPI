@@ -16,6 +16,7 @@
     background-color: #dfe3ec;
     display: flex;
     padding: 10px 20px;
+    height: 100px;
 
     .stats-box {
       background: #fff;
@@ -40,6 +41,29 @@
         font-weight: bold;
     }
   }
+  }
+
+  .stats-reconcillation {
+    flex: 1;
+    justify-content: center;
+    margin-left: 20px;
+    .stats-box {
+      width: auto;
+      padding: 0 10px;
+
+      .stat-count {
+        font-weight: normal;
+        span {
+          b{
+            margin-right: 10px;
+            font-size: 20px;
+          }
+          &:first-child {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
   }
 }
 

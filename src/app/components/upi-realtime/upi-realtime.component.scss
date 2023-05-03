@@ -1,0 +1,19 @@
+.data-table-footer {
+  background-color: white;
+  display: flex;
+  width: 100%;
+
+  .footer-title {
+    flex: 1;
+  }
+
+  .page-limit-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    .ngx-datatable .datatable-footer .datatable-pager {
+      flex: initial;
+    }
+  }
+}

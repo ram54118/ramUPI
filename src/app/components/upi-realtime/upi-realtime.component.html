@@ -7,11 +7,11 @@ class="material"
 [headerHeight]="50"
 [footerHeight]="50"
 rowHeight="auto"
-[footerHeight]="100"
-[limit]="5"
+[footerHeight]="50"
+[limit]="selectedPageOption"
 >
 
-<ngx-datatable-footer *ngIf="true">
+<ngx-datatable-footer>
   <ng-template
     ngx-datatable-footer-template
     let-rowCount="rowCount"
@@ -20,12 +20,14 @@ rowHeight="auto"
     let-curPage="curPage"
     let-offset="offset"
   >
+  <div class="data-table-footer">
+    <div class="footer-title">Total records</div>
   <div class="page-limit-container">
+    <span>Items per page </span>
     <select [ngModel]="selectedPageOption" (ngModelChange)="onLimitChange($event, table)">
       <option *ngFor="let count of pageLimitOptions" [ngValue]="count">{{count}}</option>
     </select>
-  </div>
-
+    
     <datatable-pager
     [pagerLeftArrowIcon]="'datatable-icon-left'"
     [pagerRightArrowIcon]="'datatable-icon-right'"
@@ -37,6 +39,18 @@ rowHeight="auto"
     [hidden]="!((rowCount / pageSize) > 1)"
     (change)="table.onFooterPage($event)">
 </datatable-pager>
+  </div>
+
+</div>
   </ng-template>
 </ngx-datatable-footer>
+
 </ngx-datatable>
+
+<ng-template #customTmpl let-row="row" let-value="value">
+  <ng-container [ngSwitch] = "value">
+    <div *ngSwitchCase = "'success'">SUCCESS</div>
+    <div *ngSwitchCase = "'pending'">PENDING</div>
+    <div *ngSwitchCase = "'delayed'">Delayed</div>
+  </ng-container>
+</ng-template>

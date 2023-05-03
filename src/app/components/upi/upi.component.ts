@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upi.component.scss']
 })
 export class UpiComponent implements OnInit {
-  selectedAction = 'realtime';
+  selectedAction = 'reconcillation';
   constructor() { }
 
   ngOnInit(): void {

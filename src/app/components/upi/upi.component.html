@@ -7,7 +7,7 @@
         <option value="efd">EFD</option>
       </select>
     </div>
-    <div class="stats">
+    <div *ngIf="selectedAction === 'realtime'" class="stats">
       <div class="stats-box active">
         <div class="stat-count">49</div>
         <div class="stat-label">Total</div>
@@ -24,6 +24,29 @@
         <div class="stat-count">7</div>
         <div class="stat-label">Delayed</div>
       </div>
+      
+    </div>
+
+    <div *ngIf="selectedAction === 'reconcillation'" class="stats stats-reconcillation">
+      <div class="stats-box active">
+        <div class="stat-count">
+          <span><b>78</b>Total</span> <span> <b>19</b>Failed </span> 
+        </div>
+        <div class="stat-label">Last 60 Minutes</div>
+      </div>
+      <div class="stats-box">
+        <div class="stat-count">
+          <span><b>78</b>Total</span> <span> <b>19</b>Failed </span> 
+        </div>
+        <div class="stat-label">Last 24 Hours</div>
+      </div>
+      <div class="stats-box">
+        <div class="stat-count">
+          <span><b>78</b>Total</span> <span> <b>19</b>Failed </span> 
+        </div>
+        <div class="stat-label">Last 7 Days</div>
+      </div>
+      
     </div>
   </div>
   <div class="upi-content">

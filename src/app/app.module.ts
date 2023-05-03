@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UpiComponent } from './components/upi/upi.component';
 import { UpiRealtimeComponent } from './components/upi-realtime/upi-realtime.component';
 import { UpiReconciliationComponent } from './components/upi-reconciliation/upi-reconciliation.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -20,10 +21,12 @@ import { UpiReconciliationComponent } from './components/upi-reconciliation/upi-
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,83 @@
-<p>upi-reconciliation works!</p>
+<div class="reconciliation-header">
+  <div class="search-container">
+    <input type="text">
+    <select>
+      <option value="efd">EFD</option>
+    </select>
+  </div>
+  <div class="actions"></div>
+</div>
+<div class="reconciliation-content">
+  <ngx-datatable
+#table
+class="material"
+[rows]="rows"
+[columns]="columns"
+[columnMode]="'force'"
+[headerHeight]="50"
+[footerHeight]="50"
+rowHeight="auto"
+[footerHeight]="50"
+[limit]="selectedPageOption"
+>
+
+<ngx-datatable-footer>
+  <ng-template
+    ngx-datatable-footer-template
+    let-rowCount="rowCount"
+    let-pageSize="pageSize"
+    let-selectedCount="selectedCount"
+    let-curPage="curPage"
+    let-offset="offset"
+  >
+  <div class="data-table-footer">
+    <div class="footer-title">Total records</div>
+  <div class="page-limit-container">
+    <span>Items per page </span>
+    <select [ngModel]="selectedPageOption" (ngModelChange)="onLimitChange($event, table)">
+      <option *ngFor="let count of pageLimitOptions" [ngValue]="count">{{count}}</option>
+    </select>
+    
+    <datatable-pager
+    [pagerLeftArrowIcon]="'datatable-icon-left'"
+    [pagerRightArrowIcon]="'datatable-icon-right'"
+    [pagerPreviousIcon]="'datatable-icon-prev'"
+    [pagerNextIcon]="'datatable-icon-skip'"
+    [page]="curPage"
+    [size]="pageSize"
+    [count]="rowCount"
+    [hidden]="!((rowCount / pageSize) > 1)"
+    (change)="table.onFooterPage($event)">
+</datatable-pager>
+  </div>
+
+</div>
+  </ng-template>
+</ngx-datatable-footer>
+
+</ngx-datatable>
+</div>
+
+<ng-template #customTmpl let-row="row" let-value="value">
+  <ng-container [ngSwitch] = "value">
+    <div *ngSwitchCase = "'success'">SUCCESS</div>
+    <div *ngSwitchCase = "'pending'">PENDING</div>
+    <div *ngSwitchCase = "'delayed'">Delayed</div>
+  </ng-container>
+</ng-template>
+
+<ng-template #statusTmpl let-row="row" let-value="value">
+  <ng-container [ngSwitch] = "value">
+    <div *ngSwitchCase = "'success'">SUCCESS</div>
+    <div *ngSwitchCase = "'pending'">PENDING</div>
+    <div *ngSwitchCase = "'delayed'">Delayed</div>
+  </ng-container>
+</ng-template>
+
+<ng-template #actionTmpl let-row="row" let-value="value">
+  <ng-container [ngSwitch] = "value">
+    <div *ngSwitchCase = "'success'">SUCCESS</div>
+    <div *ngSwitchCase = "'pending'">PENDING</div>
+    <div *ngSwitchCase = "'delayed'">Delayed</div>
+  </ng-container>
+</ng-template>
