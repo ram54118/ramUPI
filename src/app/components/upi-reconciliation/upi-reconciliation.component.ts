@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 @Component({
   selector: 'app-upi-reconciliation',
   templateUrl: './upi-reconciliation.component.html',
-  styleUrls: ['./upi-reconciliation.component.css']
+  styleUrls: ['./upi-reconciliation.component.scss']
 })
 export class UpiReconciliationComponent implements OnInit {
 

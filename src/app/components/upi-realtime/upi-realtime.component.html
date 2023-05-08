@@ -20,6 +20,7 @@ rowHeight="auto"
     let-curPage="curPage"
     let-offset="offset"
   >
+  {{rowCount }} {{ pageSize}} {{selectedCount}} {{ curPage}}
   <div class="data-table-footer">
     <div class="footer-title">Total records</div>
   <div class="page-limit-container">
@@ -27,7 +28,9 @@ rowHeight="auto"
     <select [ngModel]="selectedPageOption" (ngModelChange)="onLimitChange($event, table)">
       <option *ngFor="let count of pageLimitOptions" [ngValue]="count">{{count}}</option>
     </select>
-    
+    <div class="items-of">
+      {{curPage === 1 ? 1 : (curPage-1) * pageSize}} - {{curPage * pageSize >= rowCount ? rowCount : curPage * pageSize}} of {{rowCount}}
+    </div>
     <datatable-pager
     [pagerLeftArrowIcon]="'datatable-icon-left'"
     [pagerRightArrowIcon]="'datatable-icon-right'"
