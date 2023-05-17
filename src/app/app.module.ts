@@ -10,6 +10,9 @@ import { UpiComponent } from './components/upi/upi.component';
 import { UpiRealtimeComponent } from './components/upi-realtime/upi-realtime.component';
 import { UpiReconciliationComponent } from './components/upi-reconciliation/upi-reconciliation.component';
 import { CommonModule } from '@angular/common';
+import { UipUploadComponent } from './components/uip-upload/uip-upload.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { DragAndDropDirective } from './directives/drag-drop.directive';
 
 
 @NgModule({
@@ -17,7 +20,9 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     UpiComponent,
     UpiRealtimeComponent,
-    UpiReconciliationComponent
+    UpiReconciliationComponent,
+    UipUploadComponent,
+    DragAndDropDirective
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     NgxDatatableModule,
-    
+    ModalModule.forRoot() 
   ],
   providers: [],
   bootstrap: [AppComponent]

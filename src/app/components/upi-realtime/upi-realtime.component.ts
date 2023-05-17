@@ -160,7 +160,7 @@ export class UpiRealtimeComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns =  [
-      { name: 'Alert ID', prop: 'alertId'},
+      { name: 'Alert ID', prop: 'alertId', width: 500},
       { name: 'EFD11', prop: 'efd', cellTemplate: this.customTmpl},
       { name: 'EH', prop: 'eh', cellTemplate: this.customTmpl },
       { name: 'RSM', prop: 'rsm', cellTemplate: this.customTmpl },

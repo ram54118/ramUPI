@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { UipUploadComponent } from '../uip-upload/uip-upload.component';
 
 @Component({
   selector: 'app-upi-reconciliation',
@@ -6,7 +8,7 @@ import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
   styleUrls: ['./upi-reconciliation.component.scss']
 })
 export class UpiReconciliationComponent implements OnInit {
-
+  bsModalRef?: BsModalRef;
   @ViewChild('customTmpl', { static: true }) customTmpl!: TemplateRef<any>;
   @ViewChild('statusTmpl', { static: true }) statusTmpl!: TemplateRef<any>;
   @ViewChild('actionTmpl', { static: true }) actionTmpl!: TemplateRef<any>;
@@ -160,11 +162,11 @@ export class UpiReconciliationComponent implements OnInit {
   columns: any;
   public pageLimitOptions = [5, 10, 20, 50];
   selectedPageOption = 5;
-  constructor() { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.columns =  [
-      { name: 'Alert ID', prop: 'alertId'},
+      { name: 'Alert ID', prop: 'alertId', width: 500},
       { name: 'Date/Time', prop: 'efd', cellTemplate: this.customTmpl},
       { name: 'Priority', prop: 'eh', cellTemplate: this.customTmpl },
       { name: 'EFD', prop: 'rsm', cellTemplate: this.customTmpl },
@@ -182,6 +184,17 @@ export class UpiReconciliationComponent implements OnInit {
   public onLimitChange(event: any, table: any): void {
     table.limit = event;
     table.recalculate();
+  }
+
+  openUplodaDialog() {
+    const initialState: ModalOptions = {
+      initialState: {
+        
+      },
+      class: 'modal-lg'
+    };
+    this.bsModalRef = this.modalService.show(UipUploadComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
 }

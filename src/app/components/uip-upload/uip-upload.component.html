@@ -1,0 +1,54 @@
+<div class="upload-modal">
+  <div class="uip-wrapper">
+    <div class="uip-info">
+      <div class="info-col">
+        <div class="info-value alert-id">523</div>
+        <div class="info-label">Alert ID</div>
+      </div>
+      <div class="info-col">
+        <div class="info-value">04/11/2023 01:24:32 PM CST</div>
+        <div class="info-label">Date / Time</div>
+      </div>
+      <div class="info-col">
+        <div class="info-value">High</div>
+        <div class="info-label">Priority</div>
+      </div>
+      <div class="info-col">
+        <div class="info-value status"></div>
+        <div class="info-label">Status</div>
+      </div>
+    </div>
+    <div class="uip-flow">
+      <div class="flow" *ngFor="let flow of flows; let i">
+        <div class="status d-flex flex-column">
+          <div class="icon">{{flow.status}}</div>
+          <div class="name">{{flow.name}}</div>
+        </div>
+        <div class="arrow" >
+          arrow
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="upload-container">
+    <div class="upload-header">Upload the file in dispute</div>
+    <div class="drop-container" appDnd (fileDropped)="onFileDropped($event)">
+      <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+      <p><span></span>Drop files to attach or Select files</p>
+    </div>
+    <div class="files-list">
+      <div class="single-file" *ngFor="let file of files; let i = index">
+        <div class="info">
+          <h4 class="name">
+            {{ file?.name }}
+          </h4>
+        </div>
+    
+        <div class="delete" (click)="deleteFile(i)">
+          delete icon
+        </div>
+      </div>
+      <button>Submit Upload</button>
+    </div>
+  </div>
+</div>
