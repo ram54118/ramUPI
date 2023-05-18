@@ -9,6 +9,7 @@ import { UipUploadComponent } from '../uip-upload/uip-upload.component';
 })
 export class UpiReconciliationComponent implements OnInit {
   bsModalRef?: BsModalRef;
+  @ViewChild('alertIdTmpl', { static: true }) alertIdTmpl!: TemplateRef<any>;
   @ViewChild('customTmpl', { static: true }) customTmpl!: TemplateRef<any>;
   @ViewChild('statusTmpl', { static: true }) statusTmpl!: TemplateRef<any>;
   @ViewChild('actionTmpl', { static: true }) actionTmpl!: TemplateRef<any>;
@@ -166,7 +167,7 @@ export class UpiReconciliationComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns =  [
-      { name: 'Alert ID', prop: 'alertId', width: 500},
+      { name: 'Alert ID', prop: 'alertId', width: 500, cellTemplate: this.alertIdTmpl},
       { name: 'Date/Time', prop: 'efd', cellTemplate: this.customTmpl},
       { name: 'Priority', prop: 'eh', cellTemplate: this.customTmpl },
       { name: 'EFD', prop: 'rsm', cellTemplate: this.customTmpl },

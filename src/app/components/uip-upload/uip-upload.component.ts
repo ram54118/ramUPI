@@ -20,11 +20,11 @@ export class UipUploadComponent implements OnInit {
   },
   {
     name:'EH',
-    status: 'success'
+    status: 'failed'
   },
   {
     name:'UIP',
-    status: 'success'
+    status: 'failed'
   }];
   files: any[] = [];
   constructor() { }

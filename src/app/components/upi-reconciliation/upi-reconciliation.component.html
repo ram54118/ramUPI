@@ -23,7 +23,6 @@ rowHeight="auto"
 [footerHeight]="50"
 [limit]="selectedPageOption"
 >
-
 <ngx-datatable-footer>
   <ng-template
     ngx-datatable-footer-template
@@ -60,6 +59,10 @@ rowHeight="auto"
 
 </ngx-datatable>
 </div>
+
+<ng-template #alertIdTmpl let-row="row" let-value="value">
+  <span class="alert-id" (click)="openUplodaDialog()">{{value}}</span>
+</ng-template>
 
 <ng-template #customTmpl let-row="row" let-value="value">
   <ng-container [ngSwitch] = "value">

@@ -21,6 +21,40 @@
         align-items: center;
         .arrow {
           margin: 0 20px;
+          background: #c4c4c4;
+          height: 3px;
+          width: 30px;
+          position: relative;
+          cursor: pointer;
+          &.success {
+            background: green;
+
+            &:before,
+            &:after {
+              background: green;
+            }
+          }
+        
+          &:before,
+          &:after {
+            content: "";
+            background: #c4c4c4;
+            position: absolute;
+            height: 3px;
+            width: 15px;
+          }
+        
+          &:before {
+            right: -3px;
+            bottom: -4px;
+            transform: rotate(-45deg);
+          }
+        
+          &:after {
+            right: -3px;
+            top: -4px;
+            transform: rotate(45deg);
+          }
         }
       }
     }

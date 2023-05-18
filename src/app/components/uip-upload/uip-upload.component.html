@@ -19,13 +19,12 @@
       </div>
     </div>
     <div class="uip-flow">
-      <div class="flow" *ngFor="let flow of flows; let i">
+      <div class="flow" *ngFor="let flow of flows; let i=index">
         <div class="status d-flex flex-column">
           <div class="icon">{{flow.status}}</div>
           <div class="name">{{flow.name}}</div>
         </div>
-        <div class="arrow" >
-          arrow
+        <div class="arrow" [ngClass]="{success: flows[i+1].status === 'success'}" *ngIf="i !== (flows.length-1)">
         </div>
       </div>
     </div>
