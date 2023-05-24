@@ -1,7 +1,7 @@
 <div class="upi d-flex flex-column">
   <div class="upi-header d-flex">
     <div class="actions d-flex">
-      <button (click)="getUpiData('realtime')" [ngClass]="{'active': selectedAction === 'realtime'}" type="button" class="btn btn-secondary">Realtime</button>
+      <button (click)="opneMsgDialog(msgDialogTemplate)" [ngClass]="{'active': selectedAction === 'realtime'}" type="button" class="btn btn-secondary">Realtime</button>
       <button (click)="getUpiData('reconcillation')" [ngClass]="{'active': selectedAction === 'reconcillation'}" type="button" class="btn btn-secondary">Reconcillation</button>
       <select>
         <option value="efd">EFD</option>
@@ -54,3 +54,24 @@
       <app-upi-reconciliation *ngIf="selectedAction === 'reconcillation'"></app-upi-reconciliation>
   </div>
 </div>
+
+<ng-template #msgDialogTemplate>
+  <div class="message-dialog-container d-flex flex-column">
+    <div class="message-dialog-header d-flex">
+      <h4 class="">Send Email</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="message-dialog-body d-flex flex-column">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input [formControl]="emailControl" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+    </div>
+    <div class="message-dialog-footer d-flex">
+      <button>Cancel</button>
+      <button [disabled]="emailControl.invalid">Send</button>
+    </div>
+  </div>
+</ng-template>

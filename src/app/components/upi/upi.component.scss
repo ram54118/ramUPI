@@ -70,3 +70,33 @@
 .upi-content {
   margin-top: 20px
 }
+
+.message-dialog-container {
+  padding: 10px;
+
+  .message-dialog-header {
+    h4{
+      flex: 1;
+      font-size: 18px;
+    }
+  }
+
+  .message-dialog-body {
+    h6 {
+      font-size: 12px;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .message-dialog-footer {
+    justify-content: flex-end;
+    button {
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
