@@ -1,0 +1,12 @@
+.settings-container {
+  gap: 30px;
+  padding: 20px 30px;
+  .items {
+    display: flex;
+    gap: 20px;
+  }
+}
+.title {
+  padding: 20px 30px;
+  background-color: lightblue;
+}

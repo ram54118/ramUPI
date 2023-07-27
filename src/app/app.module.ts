@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { UipUploadComponent } from './components/uip-upload/uip-upload.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DragAndDropDirective } from './directives/drag-drop.directive';
+import { ApplicationWidgetSettingsComponent } from './components/application-widget-settings/application-widget-settings.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DragAndDropDirective } from './directives/drag-drop.directive';
     UpiRealtimeComponent,
     UpiReconciliationComponent,
     UipUploadComponent,
-    DragAndDropDirective
+    DragAndDropDirective,
+    ApplicationWidgetSettingsComponent
   ],
   imports: [
     BrowserModule,
