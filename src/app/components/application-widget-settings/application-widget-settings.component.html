@@ -8,7 +8,13 @@
     <div class="item-title">
       OMM Widgets
     </div>
-    <div class="items">
+
+    <div class="input-row" *ngFor="let item of ommWidgetsArray.controls; index as idx; last as isLast">
+          <input  [formControl]="item">
+          <label for="">{{ommWidgetsList[idx].label}}</label>
+  
+  </div>
+    <!-- <div class="items">
       <div class="item d-flex flex-column">
         <label for="">Incoming Events</label>
       </div>
@@ -18,6 +24,6 @@
       <div class="item d-flex flex-column">
         <label for="">Incoming Events</label>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
