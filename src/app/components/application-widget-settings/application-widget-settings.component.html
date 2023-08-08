@@ -27,3 +27,14 @@
     </div> -->
   </div>
 </div>
+
+
+<!--bar chart starts-->
+<div class="bar-chart-container d-flex flex-column">
+  <div class="bar-container d-flex" *ngFor="let bar of chartData">
+    <div class="bar-label">{{bar.stepName}}</div>
+    <div class="bar-width">
+      <div class="bar" [style.width]="bar.width">{{bar.stepCount}}</div>
+    </div>
+  </div>
+</div>

@@ -10,3 +10,49 @@
   padding: 20px 30px;
   background-color: lightblue;
 }
+
+//bar chart scss
+
+.bar-chart-container {
+  .bar-container {
+    &:last-child {
+      .bar {
+        margin-bottom: 0;
+      }
+    }
+    &:nth-child(odd) {
+      .bar {
+        background: #0e85ac;
+      }
+
+    }
+    &:nth-child(even) {
+      .bar {
+        background: lightblue;
+      }
+    }
+    .bar-width {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .bar-label {
+    padding-right: 20px;
+    width: 300px;
+    text-align: right;
+    border-right: 1px solid green;
+  }
+
+  .bar {
+    width: 100%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
