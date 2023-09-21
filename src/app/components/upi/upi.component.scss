@@ -109,6 +109,23 @@
 .gap-2 {
   gap: 20px;
 }
+@keyframes move-dot {
+  0% {
+      left: 0;
+  }
+
+  50% {
+    left: 55%;
+  }
+
+  75% {
+    left: 75%;
+  }
+  
+  // 100% { 
+  //   left: 0%;
+  // }
+}
 .box-container {
   width: 100%;
   border: 1px solid #c4c4c4;
@@ -142,6 +159,7 @@
     width: 40%;
     align-items: center;
     display: flex;
+    position: relative;
     .arrow {
       background: #c4c4c4;
       height: 3px;
@@ -169,6 +187,16 @@
         top: -4px;
         transform: rotate(45deg);
       }
+    }
+
+    .dot {
+      height: 30px;
+      width: 30px;
+      animation: move-dot 2s linear infinite;
+      background: #5bc0eb;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 9;
     }
   }
 
