@@ -100,3 +100,79 @@
     }
   }
 }
+.w-22 {
+  width: 22%;
+}
+.w-12 {
+  width: 12%;
+}
+.gap-2 {
+  gap: 20px;
+}
+.box-container {
+  width: 100%;
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 20px;
+
+  .circle-container {
+    width: 60%;
+    &.last-circle {
+      width: 100%;
+    }
+
+    .circle {
+      width: 100%;
+      background: red;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::before {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+  }
+  }
+
+  .arrow-container {
+    width: 40%;
+    align-items: center;
+    display: flex;
+    .arrow {
+      background: #c4c4c4;
+      height: 3px;
+      width: 100%;
+      position: relative;
+      cursor: pointer;
+    
+      &:before,
+      &:after {
+        content: "";
+        background: #c4c4c4;
+        position: absolute;
+        height: 3px;
+        width: 15px;
+      }
+    
+      &:before {
+        right: -3px;
+        bottom: -4px;
+        transform: rotate(-45deg);
+      }
+    
+      &:after {
+        right: -3px;
+        top: -4px;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .upper-label, .lower-label {
+    text-align: center;
+  }
+}
