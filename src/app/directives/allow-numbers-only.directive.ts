@@ -108,7 +108,6 @@ export class NumbersOnly {
     const value = this.getFullValue(key, cursorPosition);
     const validateDots = /^\d*\.?\d{0,2}$/.test(value);
     const isNumberValid = this.maxAllowedValue ? this.maxAllowedValue > +value : true;
-    // this.hostElement.nativeElement['value'] = isNumberValid ? e.target.value : this.previousValue;
     if (isNumber && validateDots && isNumberValid) return; else e.preventDefault();
 }
 
@@ -146,7 +145,9 @@ validateValue(value: string): void {
     // test number with regular expression, when
     // number is invalid, replace it with a zero
     let valid: boolean = (new RegExp(regex)).test(value);
-    this.hostElement.nativeElement['value'] = valid ? value : '';
+    const validateDots = /^\d*\.?\d{0,2}$/.test(value);
+    const isNumberValid = this.maxAllowedValue ? this.maxAllowedValue > +value : true;
+    this.hostElement.nativeElement['value'] = valid && validateDots && isNumberValid ? value : '';
 }
 
 /**
