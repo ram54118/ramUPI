@@ -105,15 +105,17 @@ export class NumbersOnly {
 
     // allow number characters only
     let isNumber = (new RegExp(this.integerUnsigned)).test(key);
-    const isNumberValid = this.maxAllowedValue ? this.maxAllowedValue > this.getFullValue(key, cursorPosition) : true;
+    const value = this.getFullValue(key, cursorPosition);
+    const validateDots = /^\d*\.?\d{0,2}$/.test(value);
+    const isNumberValid = this.maxAllowedValue ? this.maxAllowedValue > +value : true;
     // this.hostElement.nativeElement['value'] = isNumberValid ? e.target.value : this.previousValue;
-    if (isNumber && isNumberValid) return; else e.preventDefault();
+    if (isNumber && validateDots && isNumberValid) return; else e.preventDefault();
 }
 
 private getFullValue(key: string, cursorPosition: number) {
   const beforeValue = this.previousValue.substring(0, cursorPosition);
   const afterValue = this.previousValue.substring(cursorPosition);
-  return +(beforeValue+key+afterValue);
+  return (beforeValue+key+afterValue);
 }
 
 /**
