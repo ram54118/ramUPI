@@ -14,6 +14,7 @@ import { UipUploadComponent } from './components/uip-upload/uip-upload.component
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DragAndDropDirective } from './directives/drag-drop.directive';
 import { ApplicationWidgetSettingsComponent } from './components/application-widget-settings/application-widget-settings.component';
+import { NumbersOnly } from './directives/allow-numbers-only.directive';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ApplicationWidgetSettingsComponent } from './components/application-wid
     UpiReconciliationComponent,
     UipUploadComponent,
     DragAndDropDirective,
-    ApplicationWidgetSettingsComponent
+    ApplicationWidgetSettingsComponent,
+    NumbersOnly
   ],
   imports: [
     BrowserModule,
