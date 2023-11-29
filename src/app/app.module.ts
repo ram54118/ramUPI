@@ -16,6 +16,7 @@ import { DragAndDropDirective } from './directives/drag-drop.directive';
 import { ApplicationWidgetSettingsComponent } from './components/application-widget-settings/application-widget-settings.component';
 import { NumbersOnly } from './directives/allow-numbers-only.directive';
 import { TtdComponent } from './ttd/ttd.component';
+import { NgxJsonViewerComponent } from './components/ngx-json-viewer/ngx-json-viewer.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TtdComponent } from './ttd/ttd.component';
     DragAndDropDirective,
     ApplicationWidgetSettingsComponent,
     NumbersOnly,
-    TtdComponent
+    TtdComponent,
+    NgxJsonViewerComponent
   ],
   imports: [
     BrowserModule,

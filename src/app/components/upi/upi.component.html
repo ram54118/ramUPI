@@ -7,7 +7,31 @@ type="text"
 
 > -->
 
-<div class="upi d-flex flex-column">
+<ngx-json-viewer [json]="data" ></ngx-json-viewer>
+<form *ngIf= "showForm" [formGroup]="dynamicFormGroup"  class="d-flex gap-3 flex-column mt-3">
+  <div class="d-flex gap-3 flex-column">
+    <ng-container *ngFor="let field of selectedFieldProps; let i = index">
+      <div class="d-flex form-field align-center gap-3">
+        <ng-container *ngIf="field === 'valueType'">
+          <select [formControlName]="field">
+            <option *ngFor="let option of typeOptions" [value]="option">{{ option }}</option>
+          </select>
+        </ng-container>
+        <ng-container *ngIf="field === 'generationType'">
+          <select [formControlName]="field">
+            <option *ngFor="let option of genrationTypeOptions" [value]="option">{{ option }}</option>
+          </select>
+        </ng-container>
+        <ng-container *ngIf="(field !== 'generationType') && (field !== 'valueType')">
+          <input [formControlName]="field" [placeholder]="field" type="text">
+        </ng-container>
+      </div>
+    </ng-container>
+    <button mat-button color="primary" (click)="onSubmit()">Submit</button>
+</div>
+</form>
+
+<!-- <div class="upi d-flex flex-column">
   <div class="upi-header d-flex">
     <div class="actions d-flex">
       <button (click)="opneMsgDialog(msgDialogTemplate)" [ngClass]="{'active': selectedAction === 'realtime'}" type="button" class="btn btn-secondary">Realtime</button>
@@ -141,4 +165,4 @@ type="text"
       <div class="lower-label">Total Alerts</div>
     </div>
   </div>
-</div>
+</div> -->
