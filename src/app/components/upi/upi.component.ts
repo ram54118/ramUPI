@@ -15,10 +15,10 @@ export class UpiComponent implements OnInit {
       valueType: 'alphanumeric',
       generationType: '',
       value: '',
-      min: '',
-      max: '',
-      prefix: '',
-      sufix: ''
+      min1: '',
+      max1: '',
+      prefix1: '',
+      sufix1: ''
     },
     number: {
       valueType: 'number',
@@ -76,12 +76,24 @@ export class UpiComponent implements OnInit {
     ).subscribe();
   }
 
-  buildDynamicForm() {
+  onPaste(event: any) {
+   try {
+    this.data = this.ngxJsonViewerService.decycle(JSON.parse(event.clipboardData.getData('text')));
+   } catch {
+    console.log('error')
+   }
+  }
+
+  onChange(event: any) {
+    event.preventDefault();
+  }
+
+  buildDynamicForm(type?: string) {
     this.dynamicFormGroup = this.formBuilder.group({});
-    const selectedField = this.configuration[this.selectedNode.type];
+    const selectedField = this.configuration[type || this.selectedNode.type];
     this.selectedFieldProps = Object.keys(selectedField);
     Object.keys(selectedField).forEach(controlName => {
-      let value = '';
+      let value = controlName === 'value' ? this.selectedNode.value : '';
       if (controlName === 'valueType') {
         value = this.selectedNode.type;
       }
@@ -89,6 +101,9 @@ export class UpiComponent implements OnInit {
       this.dynamicFormGroup.addControl(controlName, control);
     });
     this.showForm = true;
+    this.dynamicFormGroup.get('valueType')?.valueChanges.pipe(tap(res => {
+      this.buildDynamicForm(res);
+    })).subscribe();
   }
 
   onSubmit() {
@@ -99,7 +114,24 @@ export class UpiComponent implements OnInit {
     }
     valueToChange[this.selectedNode.key] = this.dynamicFormGroup.value.value;
     this.data = {...this.data};
+    this.showForm = false;
   }
+
+  onFileSelected(event: any) {
+    const file:any = event.target.files[0];
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader.readAsText(file, "UTF-8");
+      fileReader.onload = (event: any) => {
+        this.data = this.ngxJsonViewerService.decycle(JSON.parse(event.target.result));
+      }
+      fileReader.onerror = (error) => {
+        console.log(error);
+      }
+    }
+}
+
+
 
 
 

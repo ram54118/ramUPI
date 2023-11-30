@@ -6,7 +6,8 @@
 type="text"
 
 > -->
-
+<input type="file" class="file-upload" (change)="onFileSelected($event)"  accept=".json">
+<input (paste)="onPaste($event)" (keypress)="onChange($event)">
 <ngx-json-viewer [json]="data" ></ngx-json-viewer>
 <form *ngIf= "showForm" [formGroup]="dynamicFormGroup"  class="d-flex gap-3 flex-column mt-3">
   <div class="d-flex gap-3 flex-column">
