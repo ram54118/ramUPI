@@ -125,6 +125,8 @@ export class UpiComponent implements OnInit {
     valueToChange[this.selectedNode.key] = this.dynamicFormGroup.value.value;
     this.data = {...this.data};
     this.showForm = false;
+    const editedNodes = this.ngxJsonViewerService.editedNodesList.value;
+    this.ngxJsonViewerService.setEditedNodesList([...editedNodes, this.selectedNode]);
   }
 
   onFileSelected(event: any) {

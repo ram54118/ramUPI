@@ -117,4 +117,8 @@ export class NgxJsonViewerComponent implements OnChanges {
       this.ngxJsonViewerService.setSelectedNode(segment);
     }
   }
+
+  isNodeUpdated(node: any) {
+    return this.ngxJsonViewerService.editedNodesList.value.find((d: any) => d.parentPath === node.parentPath && d.key === node.key)
+  }
 }

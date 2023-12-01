@@ -93,3 +93,15 @@ $type-colors: (
     cursor: pointer;
   }
 }
+
+.editable {
+  .segment-value {
+    color: red;
+  }
+}
+
+.node-updated {
+  .segment-value {
+    color: green !important;
+  }
+}

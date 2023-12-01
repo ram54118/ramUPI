@@ -11,7 +11,7 @@
         'expanded': segment.expanded
       }">
       <div *ngIf="isExpandable(segment)" class="toggler"></div>
-      <div (click)="onKeyValuePairClick(segment)">
+      <div (click)="onKeyValuePairClick(segment)" [ngClass]="{'editable': !isExpandable(segment), 'node-updated': isNodeUpdated(segment)}" >
         <span class="segment-key">{{ segment.key }}</span>
         <span class="segment-separator">: </span>
         <span *ngIf="!segment.expanded || !isExpandable(segment)" class="segment-value">{{ segment.description }}</span>

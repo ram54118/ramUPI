@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,14 @@ export class NgxJsonViewerService {
   onNodeClick = new Subject();
   results: any = [];
 
+  editedNodesList = new BehaviorSubject([]);
+
   setSelectedNode(node: any) {
     this.onNodeClick.next(node);
+  }
+
+  setEditedNodesList(nodes: any) {
+    this.editedNodesList.next(nodes);
   }
 
   // https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
