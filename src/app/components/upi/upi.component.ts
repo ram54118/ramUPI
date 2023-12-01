@@ -95,16 +95,26 @@ export class UpiComponent implements OnInit {
     Object.keys(selectedField).forEach(controlName => {
       let value = controlName === 'value' ? this.selectedNode.value : '';
       if (controlName === 'valueType') {
-        value = this.selectedNode.type;
+        value = type ||  this.selectedNode.type;
       }
       const control = this.formBuilder.control(value);
       this.dynamicFormGroup.addControl(controlName, control);
     });
     this.showForm = true;
+   this.listenTypeChange();
+  }
+
+  listenTypeChange() {
     this.dynamicFormGroup.get('valueType')?.valueChanges.pipe(tap(res => {
+      while(Object.keys(this.dynamicFormGroup.controls).length){
+        const toRemove = Object.keys(this.dynamicFormGroup.controls)[0];
+        this.dynamicFormGroup.removeControl(toRemove)
+      }   
       this.buildDynamicForm(res);
     })).subscribe();
   }
+
+  
 
   onSubmit() {
     let valueToChange: any = this.data;
