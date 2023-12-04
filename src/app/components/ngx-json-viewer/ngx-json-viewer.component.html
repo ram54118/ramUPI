@@ -15,10 +15,11 @@
         <span class="segment-key">{{ segment.key }}</span>
         <span class="segment-separator">: </span>
         <span *ngIf="!segment.expanded || !isExpandable(segment)" class="segment-value">{{ segment.description }}</span>
+        <span *ngIf="isExpandable(segment)" (click)="addNewNode(segment, $event)" class="plus-icon">+</span>
       </div>
     </section>
     <section *ngIf="segment.expanded && isExpandable(segment)" class="children">
-      <ngx-json-viewer [json]="segment.value" [expanded]="expanded" [depth]="depth" [_currentDepth]="_currentDepth+1"></ngx-json-viewer>
+      <ngx-json-viewer [parent]="parent+'/'+segment.key" [json]="segment.value" [expanded]="expanded" [depth]="depth" [_currentDepth]="_currentDepth+1"></ngx-json-viewer>
     </section>
   </section>
 </section>

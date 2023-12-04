@@ -17,6 +17,9 @@ import { ApplicationWidgetSettingsComponent } from './components/application-wid
 import { NumbersOnly } from './directives/allow-numbers-only.directive';
 import { TtdComponent } from './ttd/ttd.component';
 import { NgxJsonViewerComponent } from './components/ngx-json-viewer/ngx-json-viewer.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalContentComponent } from './components/upi/newJsonModal';
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import { NgxJsonViewerComponent } from './components/ngx-json-viewer/ngx-json-vi
     ApplicationWidgetSettingsComponent,
     NumbersOnly,
     TtdComponent,
-    NgxJsonViewerComponent
+    NgxJsonViewerComponent,
+    ModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +44,12 @@ import { NgxJsonViewerComponent } from './components/ngx-json-viewer/ngx-json-vi
     ReactiveFormsModule,
     HttpClientModule,
     NgxDatatableModule,
-    ModalModule.forRoot() 
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalContentComponent]
 })
 export class AppModule { }

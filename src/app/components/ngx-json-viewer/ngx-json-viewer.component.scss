@@ -82,6 +82,11 @@ $type-colors: (
   .segment-type-object > .segment-main,
   .segment-type-array > .segment-main {
     white-space: nowrap;
+    &:hover {
+      .plus-icon {
+        display: inline;
+      }
+    }
   }
 
   .expanded > .toggler::after {
@@ -104,4 +109,10 @@ $type-colors: (
   .segment-value {
     color: green !important;
   }
+}
+
+.plus-icon {
+  cursor: pointer;
+  display: none;
+  padding: 10px;
 }

@@ -23,7 +23,16 @@ type="text"
             <option *ngFor="let option of genrationTypeOptions" [value]="option">{{ option }}</option>
           </select>
         </ng-container>
-        <ng-container *ngIf="(field !== 'generationType') && (field !== 'valueType')">
+
+        <ng-container *ngIf="(field === 'startDateRange') || (field === 'endDateRange')">
+          <input type="text"
+           placeholder="field"
+           class="form-control"
+           [formControlName]="field"
+           bsDatepicker>
+        </ng-container>
+
+        <ng-container *ngIf="(field !== 'generationType') && (field !== 'valueType') && (field !== 'startDateRange') && (field !== 'endDateRange')  ">
           <input [formControlName]="field" [placeholder]="field" type="text">
         </ng-container>
       </div>

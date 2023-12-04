@@ -7,6 +7,7 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class NgxJsonViewerService {
   onNodeClick = new Subject();
   results: any = [];
+  nodeToAddNewJson = new Subject();
 
   editedNodesList = new BehaviorSubject([]);
 
@@ -17,6 +18,11 @@ export class NgxJsonViewerService {
   setEditedNodesList(nodes: any) {
     this.editedNodesList.next(nodes);
   }
+
+  addJsonIntoNewNode(node: any) {
+    this.nodeToAddNewJson.next(node);
+  }
+
 
   // https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
   decycle(object: any) {
