@@ -116,3 +116,9 @@ $type-colors: (
   display: none;
   padding: 10px;
 }
+
+.editable:hover {
+  .plus-icon {
+    display: inline;
+  }
+}

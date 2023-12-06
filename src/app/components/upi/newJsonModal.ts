@@ -39,13 +39,12 @@ export class ModalContentComponent implements OnInit {
       const json = JSON.parse(this.value);
       console.log(json, ':::')
       this.onClose.next({key: this.key, value: json});
-        this.bsModalRef.hide();
      } catch {
-      if(this.node.type === 'array') {
+      // if (this.node.type === 'array') {
         this.onClose.next({key: this.key, value: this.value});
-        this.bsModalRef.hide();
-      }
+      // }
       console.log('error')
      }
+     this.bsModalRef.hide();
   }
 }

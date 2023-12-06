@@ -21,6 +21,7 @@ export class NgxJsonViewerComponent implements OnChanges {
   @Input() expanded = true;
   @Input() depth = -1;
   @Input() parent = '';
+  @Input() parentNode = false;
 
   @Input() _currentDepth = 0;
 

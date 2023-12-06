@@ -204,3 +204,9 @@
     text-align: center;
   }
 }
+
+select {
+  border: 0;
+    outline: 1px solid green;
+    border-right: 5px solid transparent;
+}

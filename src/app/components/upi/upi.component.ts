@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { NgxJsonViewerService } from '../ngx-json-viewer/ngx-json-viewer.service';
 import { tap } from 'rxjs';
 import { ModalContentComponent } from './newJsonModal';
+import { PastJobsModalComponent } from 'src/app/past-jobs-modal/past-jobs-modal.component';
 
 @Component({
   selector: 'app-upi',
@@ -15,20 +16,19 @@ export class UpiComponent implements OnInit {
     alphanumeric: {
       valueType: 'alphanumeric',
       generationType: '',
-      value: '',
-      min1: '',
-      max1: '',
-      prefix1: '',
-      sufix1: ''
+      incrementType: '',
+      startDateRange: '',
+      endDateRange: '',
+      dateIncrementBy: '',
+
     },
     number: {
       valueType: 'number',
       generationType: '',
-      value: '',
-      min: '',
-      max: '',
-      prefix: '',
-      sufix: ''
+      incrementType: '',
+      startDateRange: '',
+      endDateRange: '',
+      dateIncrementBy: '',
     },
     date: {
       valueType: 'date',
@@ -76,6 +76,14 @@ export class UpiComponent implements OnInit {
     }
   };
 
+  labelsMap: any = {
+    generationType: 'Generation type',
+    incrementType: 'Increment Type',
+    startDateRange: 'start Date Range',
+    endDateRange: 'End Date Range',
+    dateIncrementBy: 'Date Increment by',
+    valueType: 'Value type'
+  }
   typeOptions = ['alphanumeric', 'number', 'date'];
   genrationTypeOptions = ['sequential', 'random'];
   dynamicFormGroup!: FormGroup;
@@ -134,6 +142,12 @@ export class UpiComponent implements OnInit {
     });
     this.showForm = true;
    this.listenTypeChange();
+
+   const startDateRangeControl = this.dynamicFormGroup.get('startDateRange') as AbstractControl;
+   const endDateRange = this.dynamicFormGroup.get('endDateRange');
+   if (endDateRange) {
+    endDateRange?.setValidators(dateComparisonValidator(startDateRangeControl))
+   }
   }
 
   listenTypeChange() {
@@ -149,7 +163,6 @@ export class UpiComponent implements OnInit {
   
 
   onSubmit() {
-    
     const editedNodes = this.ngxJsonViewerService.editedNodesList.value;
     this.ngxJsonViewerService.setEditedNodesList([...editedNodes, this.selectedNode]);
   }
@@ -167,10 +180,6 @@ export class UpiComponent implements OnInit {
       }
     }
 }
-
-
-
-
 
 
   getUpiData(action: string) {
@@ -193,23 +202,74 @@ export class UpiComponent implements OnInit {
     const bsModalRef: BsModalRef = this.modalService.show(ModalContentComponent, initialState);
     bsModalRef.content.onClose.subscribe((result: any) => {
       console.log('results', result);
-
-    let valueToChange: any = this.data;
-    const paths = node.parentPath.split('/');
-    for (let i=0; i<paths.length; i++) {
-      if(valueToChange[paths[i]]) {
-        valueToChange = valueToChange[paths[i]];
-      }
-    }
-    // valueToChange[this.selectedNode.key] = this.dynamicFormGroup.value.value;
-    if (Array.isArray(valueToChange[node.key])) {
-      valueToChange[node.key].push(result.value);
+      let valueToChange: any = this.data;
+    if(!node.parentPath) {
+      valueToChange[(result.key)] = result.value;
     } else {
-      valueToChange[node.key][result.key] = result.value;
+      const paths = node.parentPath.split('/');
+      for (let i=0; i<paths.length; i++) {
+        if(valueToChange[paths[i]]) {
+          valueToChange = valueToChange[paths[i]];
+        }
+      }
+      // valueToChange[this.selectedNode.key] = this.dynamicFormGroup.value.value;
+      if (Array.isArray(valueToChange[node.key])) {
+        valueToChange[node.key].push(result.value);
+      } else {
+        valueToChange[node.key][result.key] = result.value;
+      }
     }
     this.data = {...this.data};
     this.showForm = false;
     })
   }
 
+  openPastJobsModal() {
+    const initialState: ModalOptions = {
+      initialState: {
+        jobs: [
+          {
+            topic: 'tes1',
+            passCount: 0,
+            failCount: 3,
+            count: 3,
+            passPercentage: 0,
+            dateTime: '2023-12-06T10:55:02.316Z'
+          },
+          {
+            topic: 'tes2',
+            passCount: 0,
+            failCount: 3,
+            count: 3,
+            passPercentage: 50,
+            dateTime: '2023-12-06T10:55:02.316Z'
+          },
+          {
+            topic: 'tes3',
+            passCount: 0,
+            failCount: 3,
+            count: 3,
+            passPercentage: 100,
+            dateTime: '2023-12-06T10:55:02.316Z'
+          }
+        ]
+      }
+    };
+    this.modalService.show(PastJobsModalComponent, initialState);
+  }
+
+}
+
+
+export function dateComparisonValidator(startDateControl: AbstractControl): ValidatorFn {
+  return (endDateControl: AbstractControl): { [key: string]: any } | null => {
+    const startDate = startDateControl.value;
+    const endDate = endDateControl.value;
+
+    if (startDate && endDate) {
+      return startDate <= endDate ? null : { 'dateComparison': true };
+    }
+
+    return null;
+  };
 }
