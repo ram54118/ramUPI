@@ -35,6 +35,7 @@ type="text"
            class="form-control"
            [formControlName]="field"
            bsDatepicker>
+           <span class="text-danger" *ngIf="field === 'endDateRange' && dynamicFormGroup.get('endDateRange')?.invalid">Invalid date</span>
         </ng-container>
 
         <ng-container *ngIf="(field !== 'generationType') && (field !== 'valueType') && (field !== 'startDateRange') && (field !== 'endDateRange')  ">
