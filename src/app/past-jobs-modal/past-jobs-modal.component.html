@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Past Jobs</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="jobs d-flex flex-column gap-2">
+    <div class="job d-flex flex-column gap-1" *ngFor="let job of jobs">
+      <div class="d-flex justify-content-between">
+        <div class="job-name">{{job.topic}}</div>
+        <div class="job-date">{{job.dateTime | date}}</div>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <progressbar class="progress-bar" [value]="job.passPercentage"></progressbar>
+        <span>{{job.passPercentage}}%</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+</div>
