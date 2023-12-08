@@ -90,6 +90,10 @@ export class UpiComponent implements OnInit {
   selectedFieldProps!: any;
   showForm = false;
   selectedNode!: any;
+  finalRespone: any = {
+    payload: {},
+    configuration: {}
+  };
   constructor(private modalService: BsModalService,
     private ngxJsonViewerService: NgxJsonViewerService,
     private formBuilder: FormBuilder) { }
@@ -165,6 +169,7 @@ export class UpiComponent implements OnInit {
   onSubmit() {
     const editedNodes = this.ngxJsonViewerService.editedNodesList.value;
     this.ngxJsonViewerService.setEditedNodesList([...editedNodes, this.selectedNode]);
+    this.finalRespone.configuration[this.selectedNode.parentPath+'/'+this.selectedNode.key] = this.dynamicFormGroup.value;
   }
 
   onFileSelected(event: any) {
@@ -273,3 +278,29 @@ export function dateComparisonValidator(startDateControl: AbstractControl): Vali
     return null;
   };
 }
+
+export function minMaxValidator(minControl: AbstractControl): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any }  | null => {
+    const value = control.value as number;
+
+    if (isNaN(value) || value < minControl.value) {
+      return { 'minMaxRange': true };
+    }
+
+    return null;
+  };
+}
+
+function copyToClipboard(text: string) {
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      console.log('Text successfully copied to clipboard');
+    })
+    .catch(err => {
+      console.error('Unable to copy text to clipboard', err);
+    });
+}
+
+// Example usage
+const textToCopy = 'Hello, world!';
+copyToClipboard(textToCopy);
