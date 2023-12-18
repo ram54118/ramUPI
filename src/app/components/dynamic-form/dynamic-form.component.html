@@ -1,0 +1,18 @@
+<h1 class="mt-3 text-center">Dynamic Form</h1>
+
+<form [formGroup]="dynamicForm"  class="d-flex gap-3 flex-column mt-3">
+  <div class="d-flex gap-3 flex-column">
+    <ng-container *ngFor="let field of fields; let i = index">
+      <div class="d-flex form-field align-center gap-3">
+        <ng-container dynamicField [field]="field" [group]="dynamicForm"></ng-container>
+        <mat-icon (click)="removeField.emit(i)" aria-hidden="false" aria-label="Example home icon" >close</mat-icon>
+      </div>
+    </ng-container>
+    <button mat-button color="primary" (click)="onSubmit($event)">Submit</button>
+</div>
+</form>
+
+<div class="mt-3 output">
+  <mat-label>Preview mode</mat-label>
+  <div class="preview">{{dynamicForm.value | json}}</div>
+</div>

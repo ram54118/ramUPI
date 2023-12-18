@@ -1,0 +1,15 @@
+.form-field {
+  ::ng-deep{
+    app-input, app-date, app-select {
+      flex: 1;
+    }
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.output .preview{
+  height: 300px;
+}
